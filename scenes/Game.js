@@ -22,7 +22,6 @@ export default class Game extends Phaser.Scene {
     this.load.audio("music", "public/assets/sounds/music.mp3");
     this.load.image("leftButton", "public/assets/leftButton.png");
     this.load.image("rightButton", "public/assets/rightButton.png");
-    
   }
 
   create() {
@@ -76,10 +75,10 @@ export default class Game extends Phaser.Scene {
     this.leftButton = this.add.image(80, 1250, 'leftButton').setInteractive().setScale(0.15);
     this.rightButton = this.add.image(670, 1250, 'rightButton').setInteractive().setScale(0.15);
 
-    this.leftButton.on('pointerdown', () => { this.player.setVelocityX(-160); this.leftButtonPressed = true; });
-    this.leftButton.on('pointerup', () => { this.player.setVelocityX(0); this.leftButtonPressed = false; });
-    this.rightButton.on('pointerdown', () => { this.player.setVelocityX(160); this.rightButtonPressed = true; });
-    this.rightButton.on('pointerup', () => { this.player.setVelocityX(0); this.rightButtonPressed = false; });
+    this.leftButton.on('pointerdown', () => { this.leftButtonPressed = true; });
+    this.leftButton.on('pointerup', () => { this.leftButtonPressed = false; });
+    this.rightButton.on('pointerdown', () => { this.rightButtonPressed = true; });
+    this.rightButton.on('pointerup', () => { this.rightButtonPressed = false; });
 
     this.leftButtonPressed = false;
     this.rightButtonPressed = false;
@@ -90,13 +89,12 @@ export default class Game extends Phaser.Scene {
       this.showEnd();
     }
 
-    if (this.cursor.left.isDown) {
+    if (this.cursor.left.isDown || this.leftButtonPressed) {
       this.player.setVelocityX(-160);
       this.player.setScale(-1, 1);
       this.player.body.offset.x = 220;
       this.player.anims.play("left", true);
-
-    } else if (this.cursor.right.isDown) {
+    } else if (this.cursor.right.isDown || this.rightButtonPressed) {
       this.player.setVelocityX(160);
       this.player.setScale(1, 1);
       this.player.body.offset.x = 75;
