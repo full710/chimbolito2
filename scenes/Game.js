@@ -75,10 +75,15 @@ export default class Game extends Phaser.Scene {
     this.leftButton = this.add.image(80, 1250, 'leftButton').setInteractive().setScale(0.15);
     this.rightButton = this.add.image(670, 1250, 'rightButton').setInteractive().setScale(0.15);
 
+    // Manejo de eventos para botones en pantallas táctiles
     this.leftButton.on('pointerdown', () => { this.leftButtonPressed = true; });
     this.leftButton.on('pointerup', () => { this.leftButtonPressed = false; });
+    this.leftButton.on('pointerout', () => { this.leftButtonPressed = false; });
+    this.leftButton.on('pointerout', () => { this.leftButtonPressed = false; });
+    
     this.rightButton.on('pointerdown', () => { this.rightButtonPressed = true; });
     this.rightButton.on('pointerup', () => { this.rightButtonPressed = false; });
+    this.rightButton.on('pointerout', () => { this.rightButtonPressed = false; });
 
     this.leftButtonPressed = false;
     this.rightButtonPressed = false;
