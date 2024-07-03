@@ -23,6 +23,9 @@ export default class Game extends Phaser.Scene {
     this.load.image("leftButton", "public/assets/leftButton.png");
     this.load.image("rightButton", "public/assets/rightButton.png");
     this.load.image("enemigo2", "public/assets/enemigo2.png")
+    this.load.image("enemigo3", "public/assets/enemigo3.png")
+    this.load.image("enemigo4", "public/assets/enemigo4.png")
+
   }
 
   create() {
@@ -127,7 +130,7 @@ export default class Game extends Phaser.Scene {
   }
 
   onenemy() {
-    const tipos = ["enemigo","enemigo2"];
+    const tipos = ["enemigo2","enemigo3","enemigo4"];
     const tipo = Phaser.Math.RND.pick(tipos);
     let enemigos = this.enemigos.create(
       Phaser.Math.Between(10, 790),
@@ -135,7 +138,7 @@ export default class Game extends Phaser.Scene {
       tipo
     );
     enemigos.setVelocity(0, 100);
-    enemigos.setSize(enemigos.width * 0.5, enemigos.height * 0.5).setScale(.5);
+    enemigos.setSize(enemigos.width * 0.5, enemigos.height * 0.5).setScale(.6);
   }
 
   onShapeCollect(player, recolectables) {
