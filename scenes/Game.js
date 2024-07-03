@@ -22,11 +22,12 @@ export default class Game extends Phaser.Scene {
     this.load.audio("music", "public/assets/sounds/music.mp3");
     this.load.image("leftButton", "public/assets/leftButton.png");
     this.load.image("rightButton", "public/assets/rightButton.png");
+    this.load.image("enemigo2", "public/assets/enemigo2.png")
   }
 
   create() {
     this.fondo = this.add.image(400, 300, "fondo").setScale(7);
-    this.player = this.physics.add.sprite(400, 1100, "personaje");
+    this.player = this.physics.add.sprite(400, 1100, "personaje")
     this.player.setSize(this.player.width * 0.5, this.player.height * 1);
     this.player.setCollideWorldBounds(true);
 
@@ -119,14 +120,14 @@ export default class Game extends Phaser.Scene {
       tipo
     );
     recolectables.setVelocity(0, 100);
-    recolectables.setSize(recolectables.width * 0.2, recolectables.height * 0.2).setScale(2.5);
+    recolectables.setSize(recolectables.width * 0.2, recolectables.height * 0.2).setScale(2);
 
     recolectables.setData("points", this.shapes[tipo].points);
     recolectables.setData("tipo", tipo);
   }
 
   onenemy() {
-    const tipos = ["enemigo"];
+    const tipos = ["enemigo","enemigo2"];
     const tipo = Phaser.Math.RND.pick(tipos);
     let enemigos = this.enemigos.create(
       Phaser.Math.Between(10, 790),
@@ -134,7 +135,7 @@ export default class Game extends Phaser.Scene {
       tipo
     );
     enemigos.setVelocity(0, 100);
-    enemigos.setSize(enemigos.width * 0.5, enemigos.height * 0.5).setScale(4);
+    enemigos.setSize(enemigos.width * 0.5, enemigos.height * 0.5).setScale(.5);
   }
 
   onShapeCollect(player, recolectables) {
